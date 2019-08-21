@@ -28,3 +28,15 @@ I will be making a gamified pomodoro app. Here's how the Minimum Viable Product 
 	// a. Increase score and update value on page
     // b. Decrease timer and update value on page
 ```
+
+## For upcoming presentation...
+
+### Technical Challenge
+
+`setInterval()` runs **asynchronously**. That means that it allows the next lines of code after it to run *while it's still running in the background*. Traditional code runs in sequence.
+
+Figuring out a sensible way of managing this was the tricky part. I ran into infinite loop issues because I had code underneath it that called the same method with `setInterval()` inside.
+
+My solution was to not have any code run immediately after.
+
+### Technical Win
