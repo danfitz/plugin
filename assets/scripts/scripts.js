@@ -17,35 +17,57 @@ app.cycle = [
     app.longBreakTime
 ];
 
+app.updateTimer = function(inputMilliseconds) {
+    let milliseconds = inputMilliseconds < 0 ? -inputMilliseconds : inputMilliseconds;
+
+    let seconds = (milliseconds / 1000) % 60;
+    seconds = seconds.toString().length === 1 ? "0" + seconds : seconds;
+    let minutes = (milliseconds / 1000 - seconds) / 60;
+    minutes = minutes.toString().length === 1 ? "0" + minutes : minutes;
+
+    currentTime += minutes + ":" + seconds;
+    $(".currentTimer").text(currentTime);
+};
+
 // Function that loops through one full cycle of times
 app.startTimer = function() {
     let currentTime = app.cycle[0] * 60000; // converted to milliseconds
+    app.updateTimer(currentTime);
     
     const timeToMoveToEnd = app.cycle.shift();
     app.cycle.push(timeToMoveToEnd);
 
     const intervalId = setInterval(function() {
-        if (currentTime) {
+        // Decrease timer
+        currentTime -= 10;
+
+        if (currentTime > 0) {
             // Increase score and update value on page
             app.score += 1;
             $(".currentScore").text(app.score);
-
-            currentTime -= 10;
-
             if (currentTime % 1000 === 0) {
-                // Decrease timer and update value on page
-                let seconds = (currentTime / 1000) % 60;
-                seconds = seconds.toString().length === 1 ? "0" + seconds : seconds;
-                let minutes = (currentTime / 1000 - seconds) / 60;
-                minutes = minutes.toString().length === 1 ? "0" + minutes : minutes;
-                $(".currentTimer").text(`${minutes}:${seconds}`);
+                app.updateTimer(currentTime);
             }
         
         } else {
-            clearInterval(intervalId);
-            app.startTimer();
+            app.score -= 1;
+            $(".currentScore").text(app.score);
+            if (currentTime % 1000 === 0) {
+                app.updateTimer(currentTime);
+            }
+            // clearInterval(intervalId);
+            // app.startTimer();
         };
+        
     }, 10);
+};
+
+app.tapIn = function() {
+    $(".tapInButton").on("click", function(event) {
+        event.preventDefault();
+
+        app.startTimer();
+    });
 };
 
 app.startGame = function() {
