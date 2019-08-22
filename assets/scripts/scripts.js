@@ -51,9 +51,13 @@ app.startTimer = function() {
 app.startGame = function() {
     $(".startButton").on("click", function(event) {
         event.preventDefault();
+
+        $(".plug").toggleClass("plugRight plugLeft");
+        $(".activeGameContainer").toggleClass("containerRight containerCenter");
+        $(".startPrompt").toggleClass("containerLeft containerCenter");
         
         // Hide start prompt
-        $(".startPrompt").css("display", "none");
+        // $(".startPrompt").css("display", "none");
 
         // Start next timer
         app.startTimer();

@@ -10,39 +10,47 @@
     <link rel="stylesheet" href="assets/styles/styles.css" type="text/css">
 </head>
 <body>
-    <header>
-        <!-- Link to GitHub as ribbon -->
-        <h1 class="appTitle">Plugin</h1>
-    </header>
     <main>
-        <div class="wrapper">
-            <div class="startPrompt">
+        <div class="displayContainer wrapper">
+            <!-- Link to GitHub as ribbon -->
+
+            <section class="startPrompt containerCenter">
+                <h1 class="appTitle">Plugin</h1>
                 <input class="startButton" id="startButton" type="button" value="Plug In">
                 <label for="startButton">This is a pomodoro timer</label>
-            </div>
-    
-            <section class="scoreboard">
-                <!-- Score icon -->
-                <p class="currentScore">
-                    <!-- Dynamic score goes here -->
-                </p>
             </section>
+            
+            <img class="plug plugRight" src="longPlug.svg" alt="Test">
+            
+            <section class="activeGameContainer containerRight">
+                <section class="timerContainer">
+                    <p class="currentTimer timer">
+                        1
+                        <!-- Dynamic current timer goes here -->
+                    </p>
+                    <p class="secondTimer timer">
+                        2
+                        <!-- Dynamic upcoming 2nd timer goes here -->
+                    </p>
+                    <p class="thirdTimer timer">
+                        3
+                        <!-- Dynamic upcoming 3rd timer goes here -->
+                    </p>
+                    <p class="fourthTimer timer">
+                        4
+                        <!-- Dynamic upcoming 4th timer goes here -->
+                    </p>
+                </section>
     
-            <section class="timerContainer">
-                <p class="currentTimer">
-                    <!-- Dynamic current timer goes here -->
-                </p>
-                <p class="secondTimer">
-                    <!-- Dynamic upcoming 2nd timer goes here -->
-                </p>
-                <p class="thirdTimer">
-                    <!-- Dynamic upcoming 3rd timer goes here -->
-                </p>
-                <p class="fourthTimer">
-                    <!-- Dynamic upcoming 4th timer goes here -->
-                </p>
+                <section class="scoreboard">
+                    <!-- Score icon -->
+                    <p>Score:</p>
+                    <p class="currentScore">
+                        <!-- Dynamic score goes here -->
+                    </p>
+                </section>
             </section>
-        </div> <!-- End of .wrapper -->
+        </div> <!-- End of .gameContainer -->
     </main>
     
     <!-- jQuery import -->

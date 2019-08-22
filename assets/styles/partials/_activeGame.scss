@@ -1,0 +1,12 @@
+.activeGameContainer {
+    display: flex;
+    position: relative;
+
+
+    .timerContainer {
+        position: absolute;
+        left: -5rem;
+        display: flex;
+        flex-direction: row-reverse;
+}
+}
