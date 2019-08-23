@@ -55,6 +55,11 @@ app.startGame = function() {
         $(".plug").toggleClass("plugRight plugLeft");
         $(".activeGameContainer").toggleClass("containerRight containerCenter");
         $(".startPrompt").toggleClass("containerLeft containerCenter");
+
+        setTimeout(function() {
+            $(".plug").animate({left: "-1985px"}, 5.5);
+            $(".activeGameContainer").toggleClass("batteryCharging");
+        }, 1320);
         
         // Hide start prompt
         // $(".startPrompt").css("display", "none");

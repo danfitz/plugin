@@ -1,0 +1,17 @@
+@keyframes plugInMotion {
+    from {
+        right: calc(100% + 3rem);
+    }
+    to {
+        right: calc(100% - 15px);
+    }
+}
+
+@keyframes batteryCharging {
+    0% {
+        box-shadow: 0 0 3rem 1rem yellow;
+    }
+    75% {
+        box-shadow: 0 0 3rem 0.2rem yellow;
+    }
+}

@@ -5,8 +5,9 @@
 
     .timerContainer {
         position: absolute;
-        left: -5rem;
+        top: -6rem;
         display: flex;
-        flex-direction: row-reverse;
-}
+        flex-direction: column-reverse;
+        .timer { margin: 0; }
+    }
 }
