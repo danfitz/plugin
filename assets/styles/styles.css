@@ -189,8 +189,9 @@ h1 {
   line-height: 3rem;
 }
 
-p {
-  font-family: "Cabin", sans-serif;
+p, i {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
 }
 
 html {
@@ -220,17 +221,15 @@ main {
   position: relative;
   width: 80%;
   height: 80vw;
-  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .plug {
@@ -276,7 +275,9 @@ main {
 
 .activeGameContainer {
   position: relative;
-  background: tomato;
+  bottom: 55%;
+  background: black;
+  color: white;
   width: 100%;
   height: 65%;
   display: -webkit-box;
@@ -297,20 +298,71 @@ main {
   width: 153%;
 }
 
-.activeGameContainer .timerContainer {
+.activeGameContainer .batteryScoreboard {
   position: absolute;
+  top: 0;
+  left: 0.3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.activeGameContainer i[class^="fas fa-battery"] {
+  color: green;
+}
+
+.activeGameContainer .currentScore {
+  margin: 0;
+  margin-left: 0.2rem;
+}
+
+.activeGameContainer .timerContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: column-reverse;
-          flex-direction: column-reverse;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
 }
 
-.activeGameContainer .timerContainer .timer {
+.activeGameContainer .timer {
   margin: 0;
-  border: 1px solid tomato;
+  position: relative;
+  top: 1rem;
+}
+
+.activeGameContainer .timer1 {
+  font-size: 2rem;
+  position: relative;
+  z-index: 40;
+  line-height: 2rem;
+}
+
+.activeGameContainer .timer2, .activeGameContainer .timer3, .activeGameContainer .timer4 {
+  font-size: 0.5rem;
+}
+
+.activeGameContainer .timer2 {
+  opacity: 0.8;
+  position: relative;
+  z-index: 30;
+}
+
+.activeGameContainer .timer3 {
+  opacity: 0.6;
+  position: relative;
+  z-index: 20;
+}
+
+.activeGameContainer .timer4 {
+  opacity: 0.4;
+  position: relative;
+  z-index: 10;
 }
 
 .plugRight {

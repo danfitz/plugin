@@ -9,7 +9,7 @@
     <!-- CSS file -->
     <link rel="stylesheet" href="assets/styles/styles.css" type="text/css">
     <!-- Google font import -->
-    <link href="https://fonts.googleapis.com/css?family=Cabin|Lobster+Two:400i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Lobster+Two:400i&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
@@ -28,26 +28,27 @@
             <section class="activeGameContainer containerRight">
                 <img class="laptop" src="assets/images/laptop.png" alt="" aria-hidden="true">
                 <section class="timerContainer">
-                    <p class="currentTimer timer">
-                        1
+                    <p class="timer1 timer">
                         <!-- Dynamic current timer goes here -->
                     </p>
-                    <p class="secondTimer timer">
-                        2
+                    <p class="timer2 timer">
+                        5:00
                         <!-- Dynamic upcoming 2nd timer goes here -->
                     </p>
-                    <p class="thirdTimer timer">
-                        3
+                    <p class="timer3 timer">
+                        25:00
                         <!-- Dynamic upcoming 3rd timer goes here -->
                     </p>
-                    <p class="fourthTimer timer">
-                        4
+                    <p class="timer4 timer">
+                        20:00
                         <!-- Dynamic upcoming 4th timer goes here -->
                     </p>
                 </section>
     
                 <section class="batteryScoreboard">
-                    <!-- Score icon -->
+                    <i class="fas fa-battery-empty" aria-hidden="true"></i>
+                    <span class="sr-only">Score</span>
+
                     <p class="currentScore">
                         <!-- Dynamic score goes here -->
                     </p>
@@ -58,6 +59,8 @@
     
     <!-- jQuery import -->
     <script src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
+    <!-- Font Awesome import -->
+    <script src='https://kit.fontawesome.com/94656c5317.js'></script>
     <!-- JavaScript file -->
     <script src="assets/scripts/scripts.js" type="text/javascript"></script>
 </body>

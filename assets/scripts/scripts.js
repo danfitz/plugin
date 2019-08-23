@@ -38,7 +38,7 @@ app.startTimer = function() {
                 seconds = seconds.toString().length === 1 ? "0" + seconds : seconds;
                 let minutes = (currentTime / 1000 - seconds) / 60;
                 minutes = minutes.toString().length === 1 ? "0" + minutes : minutes;
-                $(".currentTimer").text(`${minutes}:${seconds}`);
+                $(".timer1").text(`${minutes}:${seconds}`);
             }
         
         } else {
