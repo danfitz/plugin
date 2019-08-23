@@ -4,7 +4,6 @@
 
 // Style imports for general styles
 @import "partials/typography";
-@import "partials/animations";
 
 * { 
     // Border for practice
@@ -20,26 +19,28 @@ html {
     overflow-x: hidden;
 }
 
-.wrapper {
-    width: 25rem;
-    max-width: 70vw;
-}
-
 main {
+    // Sets up canvas
     position: absolute;
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
+    // Centers .displayContainer
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+// This is the zone where information and interaction occurs
 .displayContainer {
     position: relative;
-    height: 25rem;
-    max-height: 70vw;
+    width: 80%;
+    height: 80vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .plug {
@@ -47,82 +48,8 @@ main {
     z-index: -1;
 }
 
-.plugRight {
-    top: calc(50% - 30px);
-    right: -1985px;
-    transition: right 1.5s ease-in-out;
-}
-.plugLeft {
-    top: calc(50% - 30px);
-    right: calc(100% + 3rem);
-    transition: right 1.5s ease-in-out;
-}
-
-.plugInMotion {
-    animation: plugInMotion 0.5s linear 0 1 normal forwards;
-}
-
-.containerCenter {
-    position: absolute;
-    left: 0;
-    transition: left 1.5s ease-in-out;
-}
-
-.containerLeft {
-    position: absolute;
-    left: calc(-2000px - 100%);
-    transition: left 1.5s ease-in-out;
-}
-
-.containerRight {
-    position: absolute;
-    left: calc(2000px + 100%);
-    transition: left 1.5s ease-in-out;
-}
-
-.activeGameContainer, .startPrompt {
-    border: 1px solid tomato;
-    background: white;
-    width: 100%;
-    height: 100%;
-}
-
-.startPrompt {
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    
-    .appDescription {
-        position: absolute;
-        bottom: -4rem;
-    }
-    .startButton {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: none;
-        opacity: 0;
-    }
-}
-
-.batteryCharging {
-    animation-name: batteryCharging;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-delay: 0.5s;
-}
-
-.activeGameContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 // Styles for discrete parts of website
 @import "partials/startPrompt";
 @import "partials/activeGame";
+
+@import "partials/animations";

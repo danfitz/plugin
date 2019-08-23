@@ -1,3 +1,45 @@
+// Class toggles for transition animations
+.plugRight {
+    top: calc(50% - 30px);
+    right: -1985px;
+    transition: right 1.5s ease-in-out;
+}
+.plugLeft {
+    top: calc(50% - 30px);
+    right: calc(100% + 3rem);
+    transition: right 1.5s ease-in-out;
+}
+
+.plugInMotion {
+    animation: plugInMotion 0.5s linear 0 1 normal forwards;
+}
+
+.containerCenter {
+    position: absolute;
+    left: 0;
+    transition: left 1.5s ease-in-out;
+}
+
+.containerLeft {
+    position: absolute;
+    left: calc(-2000px - 100%);
+    transition: left 1.5s ease-in-out;
+}
+
+.containerRight {
+    position: absolute;
+    left: calc(2000px + 100%);
+    transition: left 1.5s ease-in-out;
+}
+
+.batteryCharging {
+    animation-name: batteryCharging;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-delay: 0.5s;
+}
+
+// Keyframe animations
 @keyframes plugInMotion {
     from {
         right: calc(100% + 3rem);

@@ -1,0 +1,27 @@
+.startPrompt {
+    position: relative;
+    background: white;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0.3rem 0.3rem 0.2rem 0.2rem black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    .appDescription {
+        position: absolute;
+        bottom: -4rem;
+    }
+    .startButton {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: none;
+        opacity: 0;
+    }
+}
