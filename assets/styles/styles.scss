@@ -36,7 +36,9 @@ main {
 .displayContainer {
     position: relative;
     width: 80%;
+    max-width: 20rem;
     height: 80vw;
+    max-height: 20rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,6 +47,27 @@ main {
 .plug {
     position: absolute;
     z-index: -1;
+}
+
+
+.plug {
+    position: absolute;
+    z-index: -1;
+
+    .plugHead {
+        transform: rotate(90deg);
+        width: 3rem;
+    }
+}
+
+.plug::before {
+    content: "";
+    position: absolute;
+    left: -$plugLength;
+    top: 1.125rem;
+    height: 0.75rem;
+    width: $plugLength;
+    background: black;
 }
 
 // Styles for discrete parts of website

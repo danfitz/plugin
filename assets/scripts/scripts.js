@@ -3,7 +3,7 @@ const app = {};
 
 // Initialize starting properties for app
 app.score = 0; // score for game
-app.taskTime = 0.25; // in minutes
+app.taskTime = 25; // in minutes
 app.shortBreakTime = 5; // in minutes
 app.longBreakTime = 20; // in minutes
 app.cycle = [
@@ -40,7 +40,6 @@ app.startTimer = function() {
                 minutes = minutes.toString().length === 1 ? "0" + minutes : minutes;
                 $(".timer1").text(`${minutes}:${seconds}`);
             }
-        
         } else {
             clearInterval(intervalId);
             app.startTimer();
@@ -57,12 +56,12 @@ app.startGame = function() {
         $(".startPrompt").toggleClass("containerLeft containerCenter");
 
         setTimeout(function() {
-            $(".plug").animate({left: "-1985px"}, 5.5);
+            $(".plug").animate({left: "+=2rem"}, 5.5);
             // $(".activeGameContainer").toggleClass("batteryCharging");
         }, 1320);
         
-        // Hide start prompt
-        // $(".startPrompt").css("display", "none");
+        Hide start prompt
+        $(".startPrompt").css("display", "none");
 
         // Start next timer
         app.startTimer();

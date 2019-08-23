@@ -28,3 +28,7 @@ I will be making a gamified pomodoro app. Here's how the Minimum Viable Product 
 	// a. Increase score and update value on page
     // b. Decrease timer and update value on page
 ```
+
+## Attributions
+
+Cable icon in animation made by [fjstudio](https://www.flaticon.com/authors/fjstudio) from [www.flaticon.com](https://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).

@@ -220,7 +220,9 @@ main {
 .displayContainer {
   position: relative;
   width: 80%;
+  max-width: 20rem;
   height: 80vw;
+  max-height: 20rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -237,15 +239,31 @@ main {
   z-index: -1;
 }
 
+.plug {
+  position: absolute;
+  z-index: -1;
+}
+
+.plug .plugHead {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  width: 3rem;
+}
+
+.plug::before {
+  content: "";
+  position: absolute;
+  left: -150rem;
+  top: 1.125rem;
+  height: 0.75rem;
+  width: 150rem;
+  background: black;
+}
+
 .startPrompt {
   position: relative;
-  background: #222;
-  color: white;
   width: 100%;
   height: 100%;
-  -webkit-box-shadow: 0.3rem 0.3rem 0.1rem 0.1rem #111;
-          box-shadow: 0.3rem 0.3rem 0.1rem 0.1rem #111;
-  border-radius: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -256,6 +274,11 @@ main {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
+  background: #222;
+  color: white;
+  -webkit-box-shadow: 0.3rem 0.3rem 0 0.1rem #111;
+          box-shadow: 0.3rem 0.3rem 0 0.1rem #111;
+  border-radius: 1rem;
 }
 
 .startPrompt .appIcon {
@@ -285,8 +308,8 @@ main {
 .startPrompt:hover {
   margin-top: 0.1rem;
   margin-left: 0.1rem;
-  -webkit-box-shadow: 0.2rem 0.2rem 0.1rem 0.1rem black;
-          box-shadow: 0.2rem 0.2rem 0.1rem 0.1rem black;
+  -webkit-box-shadow: 0.2rem 0.2rem 0 0.1rem black;
+          box-shadow: 0.2rem 0.2rem 0 0.1rem black;
 }
 
 .startPrompt:focus {
@@ -296,13 +319,13 @@ main {
 .startPrompt:active {
   margin-top: 0.3rem;
   margin-left: 0.3rem;
-  -webkit-box-shadow: 0.05rem 0.05rem 0.05rem 0.1rem black;
-          box-shadow: 0.05rem 0.05rem 0.05rem 0.1rem black;
+  -webkit-box-shadow: 0.05rem 0.05rem 0 0.1rem black;
+          box-shadow: 0.05rem 0.05rem 0 0.1rem black;
 }
 
 .activeGameContainer {
   position: relative;
-  bottom: 55%;
+  bottom: 53%;
   background: black;
   color: white;
   width: 100%;
@@ -338,7 +361,7 @@ main {
 }
 
 .activeGameContainer i[class^="fas fa-battery"] {
-  color: green;
+  color: #53d769;
 }
 
 .activeGameContainer .currentScore {
@@ -393,22 +416,15 @@ main {
 }
 
 .plugRight {
-  top: calc(50% - 30px);
-  right: -1985px;
-  -webkit-transition: right 1.5s ease-in-out;
-  transition: right 1.5s ease-in-out;
+  right: calc(-150rem + 4rem);
+  -webkit-transition: all 1.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
 }
 
 .plugLeft {
-  top: calc(50% - 30px);
-  right: calc(100% + 3rem);
-  -webkit-transition: right 1.5s ease-in-out;
-  transition: right 1.5s ease-in-out;
-}
-
-.plugInMotion {
-  -webkit-animation: plugInMotion 0.5s linear 0 1 normal forwards;
-          animation: plugInMotion 0.5s linear 0 1 normal forwards;
+  right: calc(100% + 4rem);
+  -webkit-transition: all 1.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
 }
 
 .containerCenter {
@@ -420,14 +436,14 @@ main {
 
 .containerLeft {
   position: absolute;
-  left: calc(-2000px - 100%);
+  left: calc(-150rem - 100%);
   -webkit-transition: left 1.5s ease-in-out;
   transition: left 1.5s ease-in-out;
 }
 
 .containerRight {
   position: absolute;
-  left: calc(2000px + 100%);
+  left: calc(150rem + 100%);
   -webkit-transition: left 1.5s ease-in-out;
   transition: left 1.5s ease-in-out;
 }

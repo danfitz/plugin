@@ -1,6 +1,6 @@
 .activeGameContainer {
     position: relative;
-    bottom: 55%;
+    bottom: 53%;
     background: black;
     color: white;
     width: 100%;
@@ -25,7 +25,7 @@
 
     }
 
-    i[class^="fas fa-battery"] { color: green; } // battery icon
+    i[class^="fas fa-battery"] { color: $chargingColor; } // battery icon
 
     .currentScore {
         margin: 0;
