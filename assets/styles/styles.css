@@ -263,7 +263,7 @@ main {
 }
 
 .plugLeft {
-  left: -3rem;
+  left: -8rem;
   -webkit-transition: all 1.5s ease-in-out;
   transition: all 1.5s ease-in-out;
 }
@@ -300,21 +300,27 @@ main {
           animation-delay: 0.5s;
 }
 
+.plugInMotion {
+  left: -3rem;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
 @-webkit-keyframes plugInMotion {
   from {
-    right: calc(100% + 3rem);
+    left: -8rem;
   }
   to {
-    right: calc(100% - 15px);
+    left: -3rem;
   }
 }
 
 @keyframes plugInMotion {
   from {
-    right: calc(100% + 3rem);
+    left: -8rem;
   }
   to {
-    right: calc(100% - 15px);
+    left: -3rem;
   }
 }
 

@@ -76,7 +76,7 @@ main {
     transition: all 1.5s ease-in-out;
 }
 .plugLeft {
-    left: -$plugSize;
+    left: -$plugSize - 5rem;
     transition: all 1.5s ease-in-out;
 }
 
@@ -105,17 +105,19 @@ main {
     animation-delay: 0.5s;
 }
 
-// .plugInMotion {
-//     animation: plugInMotion 0.5s linear 0 1 normal forwards;
-// }
+.plugInMotion {
+    // animation: plugInMotion 0.5s linear 0 1 normal forwards;
+    left: -$plugSize;
+    transition: all 0.3s ease-in-out;
+}
 
 // Keyframe animations
 @keyframes plugInMotion {
     from {
-        right: calc(100% + 3rem);
+        left: -$plugSize - 5rem;
     }
     to {
-        right: calc(100% - 15px);
+        left: -$plugSize;
     }
 }
 

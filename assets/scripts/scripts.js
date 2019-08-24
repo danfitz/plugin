@@ -55,16 +55,17 @@ app.startGame = function() {
         $(".activeGameContainer").toggleClass("containerRight containerCenter");
         $(".startPrompt").toggleClass("containerLeft containerCenter");
 
-        // setTimeout(function() {
-        //     $(".plug").animate({left: "+=2rem"}, 5.5);
-        //     // $(".activeGameContainer").toggleClass("batteryCharging");
-        // }, 1320);
+        setTimeout(function() {
+            $(".plug").addClass("plugInMotion");
+            
+            // Hide start prompt
+            $(".startPrompt").css("display", "none");
+        }, 1400);
         
-        // Hide start prompt
-        // $(".startPrompt").css("display", "none");
+        setTimeout(function() {
+            app.startTimer();
+        }, 500);
 
-        // Start next timer
-        app.startTimer();
     });
 };
 
