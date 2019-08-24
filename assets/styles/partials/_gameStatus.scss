@@ -1,0 +1,23 @@
+.tapInAlert {
+    animation-name: tapInAlert;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes tapInAlert {
+    from { background: black; }
+    to { background: $powerSavingColor; }
+}
+
+.depletingAlert {
+    background: $lowBatteryColor;
+}
+
+.batteryCharging {
+    color: $chargingColor;
+}
+
+.batteryProblem {
+    color: black;
+}

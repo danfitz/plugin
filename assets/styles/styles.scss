@@ -7,7 +7,7 @@
 
 * { 
     // Border for practice
-    border: 1px solid tomato;
+    // border: 1px solid tomato;
 }
 
 html {
@@ -66,6 +66,7 @@ main {
 // Styles for discrete parts of website
 @import "partials/plug";
 @import "partials/startPrompt";
-@import "partials/activeGame";
+@import "partials/activeGameContainer";
+@import "partials/keyboard";
 
-// @import "partials/animations";
+@import "partials/gameStatus";

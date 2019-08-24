@@ -20,7 +20,8 @@
 
     .appDescription {
         position: absolute;
-        bottom: -4rem;
+        bottom: -5rem;
+        color: black;
     }
     .startButton {
         position: absolute;
@@ -41,7 +42,7 @@
 }
 
 .startPrompt:focus {
-    border: 1rem solid yellow;
+    border: 0.05rem solid yellow;
 }
 
 .startPrompt:active {

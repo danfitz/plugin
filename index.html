@@ -22,7 +22,7 @@
                     <i class="appIcon fas fa-plug" aria-hidden="true"></i>
                     <span class="sr-only">Plugin Icon</span>
                 </div>
-                <p class="appDescription">The Gamified Pomodoro App</p>
+                <p class="appDescription">Time your Work and Breaks</p>
                 <input class="startButton" id="startButton" type="button" value="Plug In">
                 <label class="visuallyHidden" for="startButton">Press button to start</label>
             </section>
@@ -34,6 +34,16 @@
             
             <section class="activeGameContainer containerRight">
                 <img class="laptop" src="assets/images/laptop.png" alt="" aria-hidden="true">
+
+                <section class="batteryScoreboard">
+                    <i class="battery fas fa-battery-empty batteryPaused" aria-hidden="true"></i>
+                    <span class="sr-only">Score</span>
+
+                    <p class="currentScore">
+                        <!-- Dynamic score goes here -->
+                    </p>
+                </section>
+
                 <section class="timerContainer">
                     <p class="timer1 timer">
                         <!-- Dynamic current timer goes here -->
@@ -51,14 +61,30 @@
                         <!-- Dynamic upcoming 4th timer goes here -->
                     </p>
                 </section>
-    
-                <section class="batteryScoreboard">
-                    <i class="fas fa-battery-empty" aria-hidden="true"></i>
-                    <span class="sr-only">Score</span>
 
-                    <p class="currentScore">
-                        <!-- Dynamic score goes here -->
-                    </p>
+                <section class="gameStatus">
+                    <p class="gameMessage"></p>
+                </section>
+    
+                <section class="keyboardControls">
+                    <button class="tapInButton keyboardButton">
+                        <span class="key">T</span>
+                        <span class="keyDescription">Tap In</span>
+                    </button>
+                    <button class="buyButton keyboardButton">
+                        <span class="key">B</span>
+                        <span class="keyDescription">Buy Time</span>
+                    </button>
+                    <button class="pauseButton keyboardButton">
+                        <span class="key">P</span>
+                        <span class="keyDescription">Pause</span>
+                    </button>
+                    <button class="shutdownButton keyboardButton">
+                        <span class="key">
+                            
+                        </span>
+                        <span class="keyDescription">Shut Down</span>
+                    </button>
                 </section>
             </section>
         </div> <!-- End of .gameContainer -->
