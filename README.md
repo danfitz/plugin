@@ -32,3 +32,15 @@ I will be making a gamified pomodoro app. Here's how the Minimum Viable Product 
 ## Attributions
 
 Cable icon in animation made by [fjstudio](https://www.flaticon.com/authors/fjstudio) from [www.flaticon.com](https://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
+
+## For upcoming presentation...
+
+### Technical Challenge
+
+`setInterval()` runs **asynchronously**. That means that it allows the next lines of code after it to run *while it's still running in the background*. Traditional code runs in sequence.
+
+Figuring out a sensible way of managing this was the tricky part. I ran into infinite loop issues because I had code underneath it that called the same method with `setInterval()` inside.
+
+My solution was to not have any code run immediately after.
+
+### Technical Win
