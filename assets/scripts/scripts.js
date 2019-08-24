@@ -55,13 +55,13 @@ app.startGame = function() {
         $(".activeGameContainer").toggleClass("containerRight containerCenter");
         $(".startPrompt").toggleClass("containerLeft containerCenter");
 
-        setTimeout(function() {
-            $(".plug").animate({left: "+=2rem"}, 5.5);
-            // $(".activeGameContainer").toggleClass("batteryCharging");
-        }, 1320);
+        // setTimeout(function() {
+        //     $(".plug").animate({left: "+=2rem"}, 5.5);
+        //     // $(".activeGameContainer").toggleClass("batteryCharging");
+        // }, 1320);
         
-        Hide start prompt
-        $(".startPrompt").css("display", "none");
+        // Hide start prompt
+        // $(".startPrompt").css("display", "none");
 
         // Start next timer
         app.startTimer();

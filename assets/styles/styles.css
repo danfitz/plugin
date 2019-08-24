@@ -194,6 +194,10 @@ p, i {
   font-size: 1rem;
 }
 
+* {
+  border: 1px solid tomato;
+}
+
 html {
   font-size: 125%;
   color: black;
@@ -223,15 +227,6 @@ main {
   max-width: 20rem;
   height: 80vw;
   max-height: 20rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .plug {
@@ -241,6 +236,7 @@ main {
 
 .plug {
   position: absolute;
+  top: calc(65% - 3rem / 2);
   z-index: -1;
 }
 
@@ -253,11 +249,95 @@ main {
 .plug::before {
   content: "";
   position: absolute;
-  left: -150rem;
+  left: -200rem;
   top: 1.125rem;
   height: 0.75rem;
-  width: 150rem;
+  width: 200rem;
   background: black;
+}
+
+.plugRight {
+  left: calc(200rem + 100%);
+  -webkit-transition: all 1.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
+}
+
+.plugLeft {
+  left: -3rem;
+  -webkit-transition: all 1.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
+}
+
+.containerCenter {
+  position: absolute;
+  left: 0;
+  -webkit-transition: left 1.5s ease-in-out;
+  transition: left 1.5s ease-in-out;
+}
+
+.containerLeft {
+  position: absolute;
+  left: calc(-100% - 200rem - 3rem);
+  -webkit-transition: left 1.5s ease-in-out;
+  transition: left 1.5s ease-in-out;
+}
+
+.containerRight {
+  position: absolute;
+  left: calc(100% + 200rem + 3rem);
+  -webkit-transition: left 1.5s ease-in-out;
+  transition: left 1.5s ease-in-out;
+}
+
+.batteryCharging {
+  -webkit-animation-name: batteryCharging;
+          animation-name: batteryCharging;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+@-webkit-keyframes plugInMotion {
+  from {
+    right: calc(100% + 3rem);
+  }
+  to {
+    right: calc(100% - 15px);
+  }
+}
+
+@keyframes plugInMotion {
+  from {
+    right: calc(100% + 3rem);
+  }
+  to {
+    right: calc(100% - 15px);
+  }
+}
+
+@-webkit-keyframes batteryCharging {
+  0% {
+    -webkit-box-shadow: 0 0 3rem 1rem yellow;
+            box-shadow: 0 0 3rem 1rem yellow;
+  }
+  75% {
+    -webkit-box-shadow: 0 0 3rem 0.2rem yellow;
+            box-shadow: 0 0 3rem 0.2rem yellow;
+  }
+}
+
+@keyframes batteryCharging {
+  0% {
+    -webkit-box-shadow: 0 0 3rem 1rem yellow;
+            box-shadow: 0 0 3rem 1rem yellow;
+  }
+  75% {
+    -webkit-box-shadow: 0 0 3rem 0.2rem yellow;
+            box-shadow: 0 0 3rem 0.2rem yellow;
+  }
 }
 
 .startPrompt {
@@ -324,8 +404,8 @@ main {
 }
 
 .activeGameContainer {
-  position: relative;
-  bottom: 53%;
+  position: absolute;
+  top: 0;
   background: black;
   color: white;
   width: 100%;
@@ -413,88 +493,4 @@ main {
   opacity: 0.4;
   position: relative;
   z-index: 10;
-}
-
-.plugRight {
-  right: calc(-150rem + 4rem);
-  -webkit-transition: all 1.5s ease-in-out;
-  transition: all 1.5s ease-in-out;
-}
-
-.plugLeft {
-  right: calc(100% + 4rem);
-  -webkit-transition: all 1.5s ease-in-out;
-  transition: all 1.5s ease-in-out;
-}
-
-.containerCenter {
-  position: absolute;
-  left: 0;
-  -webkit-transition: left 1.5s ease-in-out;
-  transition: left 1.5s ease-in-out;
-}
-
-.containerLeft {
-  position: absolute;
-  left: calc(-150rem - 100%);
-  -webkit-transition: left 1.5s ease-in-out;
-  transition: left 1.5s ease-in-out;
-}
-
-.containerRight {
-  position: absolute;
-  left: calc(150rem + 100%);
-  -webkit-transition: left 1.5s ease-in-out;
-  transition: left 1.5s ease-in-out;
-}
-
-.batteryCharging {
-  -webkit-animation-name: batteryCharging;
-          animation-name: batteryCharging;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
-}
-
-@-webkit-keyframes plugInMotion {
-  from {
-    right: calc(100% + 3rem);
-  }
-  to {
-    right: calc(100% - 15px);
-  }
-}
-
-@keyframes plugInMotion {
-  from {
-    right: calc(100% + 3rem);
-  }
-  to {
-    right: calc(100% - 15px);
-  }
-}
-
-@-webkit-keyframes batteryCharging {
-  0% {
-    -webkit-box-shadow: 0 0 3rem 1rem yellow;
-            box-shadow: 0 0 3rem 1rem yellow;
-  }
-  75% {
-    -webkit-box-shadow: 0 0 3rem 0.2rem yellow;
-            box-shadow: 0 0 3rem 0.2rem yellow;
-  }
-}
-
-@keyframes batteryCharging {
-  0% {
-    -webkit-box-shadow: 0 0 3rem 1rem yellow;
-            box-shadow: 0 0 3rem 1rem yellow;
-  }
-  75% {
-    -webkit-box-shadow: 0 0 3rem 0.2rem yellow;
-            box-shadow: 0 0 3rem 0.2rem yellow;
-  }
 }
