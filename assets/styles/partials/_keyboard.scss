@@ -1,7 +1,9 @@
 .keyboardControls {
     position: absolute;
-    bottom: -5rem;
+    bottom: -11rem;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .keyboardButton {
@@ -13,10 +15,22 @@
     border: none;
     width: 4rem;
     height: 4rem;
-    font-size: 1rem;
     text-transform: uppercase;
     margin: 0.5rem;
+    padding: 0.1rem;
 }
+
+.key {
+    display: block;
+    font-size: 2rem;
+}
+
+.fa-power-off { margin: 0.15rem 0; }
+
+.keyDescription {
+    font-size: 0.5rem;
+}
+
 .keyboardButton:hover {
     top: 0.05rem;
     left: 0.05rem;
@@ -31,4 +45,15 @@
     top: 0.1rem;
     left: 0.1rem;
     box-shadow: 0 0 0 0.1rem black;
+}
+
+.keyboardButtonFlash {
+    animation-name: keyboardButtonFlash;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes keyboardButtonFlash {
+    from { background: #222; }
+    to { background: #555; }
 }

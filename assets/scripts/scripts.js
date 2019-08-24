@@ -72,8 +72,9 @@ app.updateTimer = function(timerSelector, inputMilliseconds) {
 app.startTimer = function() {
     app.currentTime = app.cycle[0] * 60000; // converted to milliseconds
     app.updateTimer(".timer1", app.currentTime); // Initialize start time
-    // app.batteryCharging(); // Initialize battery charging icon
     
+    $(".gameStatus").text(""); // removes any messages
+
     // Move chosen time to end of cycle array
     const timeToMoveToEnd = app.cycle.shift();
     app.cycle.push(timeToMoveToEnd);
@@ -100,11 +101,13 @@ app.startTimer = function() {
                 $(".currentScore").text(app.score);
             } else {
                 app.gameStatus = "warning";
+                $(".gameStatus").text("Time until point loss begins...");
             }
 
         // Otherwise, user is in overtime and score decreases
         } else {
             app.gameStatus = "depleting";
+            $(".gameStatus").text("Tap in to stop losing points...");
             app.score -= 1;
             $(".currentScore").text(app.score);
         };
@@ -114,12 +117,14 @@ app.startTimer = function() {
             if (app.gameStatus === "on") {
                 app.batteryCharging();
                 $(".activeGameContainer").removeClass("depletingAlert tapInAlert");
+                $(".tapInButton").removeClass("keyboardButtonFlash");
             } else if (app.gameStatus === "warning") {
                 $(".battery")
                     .removeClass("batteryCharging")
                     .addClass("batteryProblem");
     
                 $(".activeGameContainer").addClass("tapInAlert");
+                $(".tapInButton").addClass("keyboardButtonFlash");
             } else if (app.gameStatus === "depleting") {
                 app.batteryDepleting();
                 $(".activeGameContainer")

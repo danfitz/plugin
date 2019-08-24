@@ -438,12 +438,24 @@ main {
   z-index: 10;
 }
 
+.gameStatus {
+  text-align: center;
+  position: absolute;
+  top: -4rem;
+  color: black;
+}
+
 .keyboardControls {
   position: absolute;
-  bottom: -5rem;
+  bottom: -11rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .keyboardButton {
@@ -456,9 +468,22 @@ main {
   border: none;
   width: 4rem;
   height: 4rem;
-  font-size: 1rem;
   text-transform: uppercase;
   margin: 0.5rem;
+  padding: 0.1rem;
+}
+
+.key {
+  display: block;
+  font-size: 2rem;
+}
+
+.fa-power-off {
+  margin: 0.15rem 0;
+}
+
+.keyDescription {
+  font-size: 0.5rem;
 }
 
 .keyboardButton:hover {
@@ -477,6 +502,33 @@ main {
   left: 0.1rem;
   -webkit-box-shadow: 0 0 0 0.1rem black;
           box-shadow: 0 0 0 0.1rem black;
+}
+
+.keyboardButtonFlash {
+  -webkit-animation-name: keyboardButtonFlash;
+          animation-name: keyboardButtonFlash;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes keyboardButtonFlash {
+  from {
+    background: #222;
+  }
+  to {
+    background: #555;
+  }
+}
+
+@keyframes keyboardButtonFlash {
+  from {
+    background: #222;
+  }
+  to {
+    background: #555;
+  }
 }
 
 .tapInAlert {
