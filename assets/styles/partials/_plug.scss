@@ -1,0 +1,44 @@
+// ===== STYLES FOR PLUG =====
+.plug {
+    position: absolute;
+    top: calc(65% - #{$plugSize} / 2);
+    z-index: -1; // plug always appears underneath other elements
+
+    .plugHead {
+        transform: rotate(90deg);
+        width: $plugSize;
+    }
+}
+
+// This is the cable for the plug
+.plug::before {
+    content: "";
+    position: absolute;
+    left: -$cableLength;
+    top: 1.125rem;
+    height: 0.75rem;
+    width: $cableLength;
+    background: black;
+}
+
+
+// ===== TRANSITION ANIMATIONS FOR PLUG =====
+
+// This is the position of the plug when starting game
+.plugRight {
+    left: calc(#{$cableLength} + 100%);
+    transition: all 1.5s ease-in-out;
+}
+
+// This is the position of the plug when game has started
+.plugLeft {
+    left: -$plugSize - 5rem;
+    transition: all 1.5s ease-in-out;
+}
+
+// This transition creates an animation
+// that looks like the plug is being plugged into the laptop
+.plugInMotion {
+    left: -$plugSize;
+    transition: all 0.3s ease-in-out;
+}

@@ -41,44 +41,7 @@ main {
     max-height: 20rem;
 }
 
-.plug {
-    position: absolute;
-    z-index: -1;
-}
-
-
-.plug {
-    position: absolute;
-    top: calc(65% - #{$plugSize} / 2);
-    z-index: -1;
-
-    .plugHead {
-        transform: rotate(90deg);
-        width: $plugSize;
-    }
-}
-
-.plug::before {
-    content: "";
-    position: absolute;
-    left: -$cableLength;
-    top: 1.125rem;
-    height: 0.75rem;
-    width: $cableLength;
-    background: black;
-}
-
-// ANIMATIONS
-
-// Class toggles for transition animations
-.plugRight {
-    left: calc(#{$cableLength} + 100%);
-    transition: all 1.5s ease-in-out;
-}
-.plugLeft {
-    left: -$plugSize - 5rem;
-    transition: all 1.5s ease-in-out;
-}
+// Class toggles for transition animations of start prompt and active game container
 
 .containerCenter {
     position: absolute;
@@ -98,41 +61,11 @@ main {
     transition: left 1.5s ease-in-out;
 }
 
-.batteryCharging {
-    animation-name: batteryCharging;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-delay: 0.5s;
-}
-
-.plugInMotion {
-    // animation: plugInMotion 0.5s linear 0 1 normal forwards;
-    left: -$plugSize;
-    transition: all 0.3s ease-in-out;
-}
-
-// Keyframe animations
-@keyframes plugInMotion {
-    from {
-        left: -$plugSize - 5rem;
-    }
-    to {
-        left: -$plugSize;
-    }
-}
-
-@keyframes batteryCharging {
-    0% {
-        box-shadow: 0 0 3rem 1rem yellow;
-    }
-    75% {
-        box-shadow: 0 0 3rem 0.2rem yellow;
-    }
-}
 
 
 // Styles for discrete parts of website
+@import "partials/plug";
 @import "partials/startPrompt";
 @import "partials/activeGame";
 
-@import "partials/animations";
+// @import "partials/animations";

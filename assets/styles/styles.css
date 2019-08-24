@@ -229,9 +229,25 @@ main {
   max-height: 20rem;
 }
 
-.plug {
+.containerCenter {
   position: absolute;
-  z-index: -1;
+  left: 0;
+  -webkit-transition: left 1.5s ease-in-out;
+  transition: left 1.5s ease-in-out;
+}
+
+.containerLeft {
+  position: absolute;
+  left: calc(-100% - 200rem - 3rem);
+  -webkit-transition: left 1.5s ease-in-out;
+  transition: left 1.5s ease-in-out;
+}
+
+.containerRight {
+  position: absolute;
+  left: calc(100% + 200rem + 3rem);
+  -webkit-transition: left 1.5s ease-in-out;
+  transition: left 1.5s ease-in-out;
 }
 
 .plug {
@@ -268,82 +284,10 @@ main {
   transition: all 1.5s ease-in-out;
 }
 
-.containerCenter {
-  position: absolute;
-  left: 0;
-  -webkit-transition: left 1.5s ease-in-out;
-  transition: left 1.5s ease-in-out;
-}
-
-.containerLeft {
-  position: absolute;
-  left: calc(-100% - 200rem - 3rem);
-  -webkit-transition: left 1.5s ease-in-out;
-  transition: left 1.5s ease-in-out;
-}
-
-.containerRight {
-  position: absolute;
-  left: calc(100% + 200rem + 3rem);
-  -webkit-transition: left 1.5s ease-in-out;
-  transition: left 1.5s ease-in-out;
-}
-
-.batteryCharging {
-  -webkit-animation-name: batteryCharging;
-          animation-name: batteryCharging;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
-}
-
 .plugInMotion {
   left: -3rem;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-}
-
-@-webkit-keyframes plugInMotion {
-  from {
-    left: -8rem;
-  }
-  to {
-    left: -3rem;
-  }
-}
-
-@keyframes plugInMotion {
-  from {
-    left: -8rem;
-  }
-  to {
-    left: -3rem;
-  }
-}
-
-@-webkit-keyframes batteryCharging {
-  0% {
-    -webkit-box-shadow: 0 0 3rem 1rem yellow;
-            box-shadow: 0 0 3rem 1rem yellow;
-  }
-  75% {
-    -webkit-box-shadow: 0 0 3rem 0.2rem yellow;
-            box-shadow: 0 0 3rem 0.2rem yellow;
-  }
-}
-
-@keyframes batteryCharging {
-  0% {
-    -webkit-box-shadow: 0 0 3rem 1rem yellow;
-            box-shadow: 0 0 3rem 1rem yellow;
-  }
-  75% {
-    -webkit-box-shadow: 0 0 3rem 0.2rem yellow;
-            box-shadow: 0 0 3rem 0.2rem yellow;
-  }
 }
 
 .startPrompt {
