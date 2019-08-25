@@ -5,17 +5,9 @@
 // Style imports for general styles
 @import "partials/typography";
 
-* { 
-    // Border for practice
-    // border: 1px solid tomato;
-}
-
 html {
-    // Sets font size to 20px for most browsers
-    font-size: 125%;
     color: black;
 }
-
 
 main {
     // Prevent overflow of absolute positioned elements beyond viewport
@@ -60,8 +52,6 @@ main {
     left: calc(100% + #{$cableLength} + #{$plugSize});
     transition: left 1.5s ease-in-out;
 }
-
-
 
 // Styles for discrete parts of website
 @import "partials/plug";

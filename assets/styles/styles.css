@@ -179,6 +179,10 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   overflow: hidden;
 }
 
+html {
+  font-size: 125%;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Lobster Two", cursive;
 }
@@ -194,8 +198,13 @@ p, i {
   font-size: 1rem;
 }
 
+@media (min-width: 500px) {
+  html {
+    font-size: 140%;
+  }
+}
+
 html {
-  font-size: 125%;
   color: black;
 }
 
@@ -248,7 +257,7 @@ main {
 
 .plug {
   position: absolute;
-  top: calc(65% - 3rem / 2);
+  top: calc(0.5rem + 65% - 3rem / 2);
   z-index: -1;
 }
 
@@ -270,20 +279,32 @@ main {
 
 .plugRight {
   left: calc(200rem + 100%);
-  -webkit-transition: all 1.5s ease-in-out;
-  transition: all 1.5s ease-in-out;
+  -webkit-transition: left 1.5s ease-in-out;
+  transition: left 1.5s ease-in-out;
 }
 
 .plugLeft {
   left: -8rem;
-  -webkit-transition: all 1.5s ease-in-out;
-  transition: all 1.5s ease-in-out;
+  -webkit-transition: left 1.5s ease-in-out;
+  transition: left 1.5s ease-in-out;
 }
 
 .plugInMotion {
   left: -3rem;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  -webkit-transition: left 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out;
+}
+
+@media (min-width: 400px) {
+  .plug {
+    top: calc(2rem + 65% - 3rem / 2);
+  }
+}
+
+@media (min-width: 600px) {
+  .plug {
+    top: calc(2.75rem + 65% - 3rem / 2);
+  }
 }
 
 .startPrompt {
@@ -317,8 +338,8 @@ main {
 
 .startPrompt .appDescription {
   position: absolute;
-  bottom: -5rem;
-  color: black;
+  bottom: 0;
+  margin: 1rem;
 }
 
 .startPrompt .startButton {
@@ -465,6 +486,21 @@ main {
   font-size: 0.75rem;
 }
 
+@media (min-width: 400px) {
+  .activeGameContainer {
+    top: 1.5rem;
+  }
+  .instructions {
+    top: -4rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .activeGameContainer {
+    top: 2.25rem;
+  }
+}
+
 .keyboardControls {
   position: absolute;
   bottom: -11.5rem;
@@ -479,18 +515,17 @@ main {
 }
 
 .keyboardButton {
-  position: relative;
+  width: 4rem;
+  height: 4rem;
+  margin: 0.5rem;
+  padding: 0.1rem 0.1rem 0.1rem 0.15rem;
   background: #222;
   color: white;
   -webkit-box-shadow: 0.1rem 0.1rem 0 0.1rem #111;
           box-shadow: 0.1rem 0.1rem 0 0.1rem #111;
   border-radius: 0.1rem;
   border: none;
-  width: 4rem;
-  height: 4rem;
   text-transform: uppercase;
-  margin: 0.5rem;
-  padding: 0.1rem 0.1rem 0.1rem 0.15rem;
 }
 
 .restartButton {
@@ -560,6 +595,12 @@ main {
   }
   to {
     background: #555;
+  }
+}
+
+@media (min-width: 560px) {
+  .keyboardControls {
+    bottom: -7rem;
   }
 }
 

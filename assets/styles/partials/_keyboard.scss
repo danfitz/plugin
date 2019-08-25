@@ -7,17 +7,16 @@
 }
 
 .keyboardButton {
-    position: relative;
+    width: 4rem;
+    height: 4rem;
+    margin: 0.5rem;
+    padding: 0.1rem 0.1rem 0.1rem 0.15rem;
     background: #222;
     color: white;
     box-shadow: 0.1rem 0.1rem 0 0.1rem #111;
     border-radius: 0.1rem;
     border: none;
-    width: 4rem;
-    height: 4rem;
     text-transform: uppercase;
-    margin: 0.5rem;
-    padding: 0.1rem 0.1rem 0.1rem 0.15rem;
 }
 
 .restartButton { display: block; margin: 1rem 0 0; }
@@ -63,4 +62,8 @@
 @keyframes keyboardButtonFlash {
     from { background: #222; }
     to { background: #555; }
+}
+
+@media (min-width: 560px) {
+    .keyboardControls { bottom: -7rem; }
 }

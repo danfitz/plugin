@@ -1,7 +1,7 @@
 // ===== STYLES FOR PLUG =====
 .plug {
     position: absolute;
-    top: calc(65% - #{$plugSize} / 2);
+    top: calc(0.5rem + 65% - #{$plugSize} / 2);
     z-index: -1; // plug always appears underneath other elements
 
     .plugHead {
@@ -27,18 +27,26 @@
 // This is the position of the plug when starting game
 .plugRight {
     left: calc(#{$cableLength} + 100%);
-    transition: all 1.5s ease-in-out;
+    transition: left 1.5s ease-in-out;
 }
 
 // This is the position of the plug when game has started
 .plugLeft {
     left: -$plugSize - 5rem;
-    transition: all 1.5s ease-in-out;
+    transition: left 1.5s ease-in-out;
 }
 
 // This transition creates an animation
 // that looks like the plug is being plugged into the laptop
 .plugInMotion {
     left: -$plugSize;
-    transition: all 0.3s ease-in-out;
+    transition: left 0.3s ease-in-out;
+}
+
+@media (min-width: 400px) {
+    .plug { top: calc(2rem + 65% - #{$plugSize} / 2); }
+}
+
+@media (min-width: 600px) {
+    .plug { top: calc(2.75rem + 65% - #{$plugSize} / 2); }
 }

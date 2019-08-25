@@ -4,10 +4,10 @@ const app = {};
 // Initialize starting properties for app
 app.score = 0; // score for game
 app.currentTime = null; // current time running
-app.workBlock = { type: "work", time: 0.05  }; // in minutes
-app.shortBreakBlock = { type: "short break", time: 1 }; // in minutes
-app.longBreakBlock = { type: "long break", time: 5 }; // in minutes
-app.paddingTime = 0.05; // in minutes
+app.workBlock = { type: "work", time: 25  }; // in minutes
+app.shortBreakBlock = { type: "short break", time: 5 }; // in minutes
+app.longBreakBlock = { type: "long break", time: 20 }; // in minutes
+app.paddingTime = 1; // in minutes
 app.cycle = [
     app.workBlock,
     app.shortBreakBlock,
@@ -27,7 +27,7 @@ app.batteryIcons = [
     "fa-battery-three-quarters",
     "fa-battery-full"
 ]
-app.buyTimeCost = 100;
+app.buyTimeCost = 20000;
 
 // this variable will provide global access to the current setInterval running
 app.intervalId = null;
@@ -292,13 +292,13 @@ app.startGame = function() {
             
             // Hide start prompt
             $(".startPrompt").css("display", "none");
-        }, 1400);
+        }, 1550);
         
         // Starts game when plug has been plugged in
         setTimeout(function() {
             $(".batteryScoreboard").removeClass("visuallyHidden"); // unhides scoreboard
             app.startTimer();
-        }, 1900);     
+        }, 2000);     
     });
 };
 

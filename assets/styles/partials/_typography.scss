@@ -1,4 +1,10 @@
 // Insert typography-related styles here
+
+html {
+    // Sets font size to 20px for most browsers
+    font-size: 125%;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "Lobster Two", cursive;
 }
@@ -12,4 +18,8 @@ h1 {
 p, i {
     font-family: "Open Sans", sans-serif;
     font-size: 1rem;
+}
+
+@media (min-width: 500px) {
+    html { font-size: 140%; }
 }
