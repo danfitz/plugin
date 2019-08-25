@@ -4,10 +4,10 @@ const app = {};
 // Initialize starting properties for app
 app.score = 0; // score for game
 app.currentTime = null; // current time running
-app.taskTime = 0.05; // in minutes
-app.shortBreakTime = 5; // in minutes
-app.longBreakTime = 20; // in minutes
-app.paddingTime = 0.05; // in minutes
+app.taskTime = 2; // in minutes
+app.shortBreakTime = 1; // in minutes
+app.longBreakTime = 5; // in minutes
+app.paddingTime = 1; // in minutes
 app.cycle = [
     app.taskTime,
     app.shortBreakTime,
@@ -58,8 +58,6 @@ app.updateTimer = function(timerSelector, inputMilliseconds) {
     seconds = seconds.toString().length === 1 ? "0" + seconds : seconds;
     // Extract minutes
     let minutes = (milliseconds / 1000 - seconds) / 60;
-    // Add 0 at beginning of minutes if value is between 0 to 9
-    minutes = minutes.toString().length === 1 ? "0" + minutes : minutes;
 
     // Concatenate minutes and seconds into mm:ss format
     formattedTime += minutes + ":" + seconds;
@@ -72,6 +70,9 @@ app.updateTimer = function(timerSelector, inputMilliseconds) {
 app.startTimer = function() {
     app.currentTime = app.cycle[0] * 60000; // converted to milliseconds
     app.updateTimer(".timer1", app.currentTime); // Initialize start time
+    $(".timer2").text(`${app.cycle[1]}:00`);
+    $(".timer3").text(`${app.cycle[2]}:00`);
+    $(".timer4").text(`${app.cycle[3]}:00`);
     
     $(".gameStatus").text(""); // removes any messages
 
@@ -89,7 +90,6 @@ app.startTimer = function() {
         // Update time on page exactly every 1 second
         if (app.currentTime % 1000 === 0) {
             app.updateTimer(".timer1", app.currentTime);
-            
         }
         
         // Increase score and update value on page as long as time is positive

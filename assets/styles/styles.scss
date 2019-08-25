@@ -19,6 +19,8 @@ html {
     // overflow-x: hidden;
 }
 
+html, body, main { overflow-x: hidden; }
+
 main {
     overflow-x: hidden;
     // Sets up canvas
