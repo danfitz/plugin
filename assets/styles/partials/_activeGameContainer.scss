@@ -29,7 +29,10 @@
     .currentScore {
         margin: 0;
         margin-left: 0.2rem;
-    }   
+    }
+
+    .batteryCharging { color: $chargingColor; } // class toggle
+    .batteryProblem { color: black; } // class toggle
 }
    
 .timerContainer {
@@ -79,6 +82,7 @@
     }
 }
 
+// Media queries
 @media (min-width: 400px) {
     .activeGameContainer { top: 1.5rem; }
     .instructions { top: -4rem; }
@@ -86,4 +90,22 @@
 
 @media (min-width: 600px) {
     .activeGameContainer { top: 2.25rem; }
+    .timerContainer .timer1 { margin: 1rem 0; }
+}
+
+// Animations for laptop screen
+.depletingAlert {
+    animation-name: depletingAlert;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes depletingAlert {
+    from { background: adjust-color($depletingColor, $lightness: -40%); }
+    to { background: $depletingColor; }
+}
+
+.warningAlert {
+    background: adjust-color($warningColor, $lightness: -10%);
 }

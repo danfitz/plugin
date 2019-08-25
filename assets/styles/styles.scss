@@ -1,13 +1,9 @@
 // Required imports to prepare stylesheet
 @import "partials/setup";
 @import "partials/variables";
-
-// Style imports for general styles
 @import "partials/typography";
 
-html {
-    color: black;
-}
+html { color: black; }
 
 main {
     // Prevent overflow of absolute positioned elements beyond viewport
@@ -24,7 +20,7 @@ main {
     justify-content: center;
 }
 
-// This is the zone where information and interaction occurs
+// This is the space where all content goes
 .displayContainer {
     position: relative;
     width: 80%;
@@ -34,7 +30,6 @@ main {
 }
 
 // Class toggles for transition animations of start prompt and active game container
-
 .containerCenter {
     position: absolute;
     left: 0;
@@ -58,5 +53,3 @@ main {
 @import "partials/startPrompt";
 @import "partials/activeGameContainer";
 @import "partials/keyboard";
-
-@import "partials/gameStatus";

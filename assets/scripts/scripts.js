@@ -4,10 +4,10 @@ const app = {};
 // Initialize starting properties for app
 app.score = 0; // score for game
 app.currentTime = null; // current time running
-app.workBlock = { type: "work", time: 25  }; // in minutes
+app.workBlock = { type: "work", time: 0.05  }; // in minutes
 app.shortBreakBlock = { type: "short break", time: 5 }; // in minutes
 app.longBreakBlock = { type: "long break", time: 20 }; // in minutes
-app.paddingTime = 1; // in minutes
+app.paddingTime = 0.05; // in minutes
 app.cycle = [
     app.workBlock,
     app.shortBreakBlock,
@@ -27,7 +27,7 @@ app.batteryIcons = [
     "fa-battery-three-quarters",
     "fa-battery-full"
 ]
-app.buyTimeCost = 20000;
+app.buyTimeCost = 100;
 
 // this variable will provide global access to the current setInterval running
 app.intervalId = null;
@@ -101,7 +101,7 @@ app.startTimer = function() {
                 // Increase score and update value on page while score is positive
                 if (app.currentTime >= 0) {
                     app.score += 1;
-                    $(".score").text(app.score);
+                    $(".score").text(app.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
                     // When timer is negative but within padding time,
                 // update game status to "warning" and display messages on page
             } else {
@@ -122,7 +122,7 @@ app.startTimer = function() {
                 }
                 // Update score
                 app.score -= 1;
-                $(".score").text(app.score);
+                $(".score").text(app.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
             };
             
             // Visual signals for game: battery icon, screen colours, etc.
