@@ -385,6 +385,7 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  opacity: 0;
 }
 
 .batteryScoreboard .currentScore {
@@ -403,6 +404,14 @@ main {
   text-align: center;
 }
 
+.timerContainer .timerStatus {
+  margin: 0;
+  position: relative;
+  top: 0.25rem;
+  text-transform: uppercase;
+  line-height: 0;
+}
+
 .timerContainer .timer {
   margin: 0;
   position: relative;
@@ -411,8 +420,6 @@ main {
 
 .timerContainer .timer1 {
   font-size: 2rem;
-  position: relative;
-  z-index: 40;
   line-height: 2rem;
 }
 
@@ -422,32 +429,43 @@ main {
 
 .timerContainer .timer2 {
   opacity: 0.8;
-  position: relative;
-  z-index: 30;
 }
 
 .timerContainer .timer3 {
   opacity: 0.6;
-  position: relative;
-  z-index: 20;
 }
 
 .timerContainer .timer4 {
   opacity: 0.4;
-  position: relative;
-  z-index: 10;
 }
 
-.gameStatus {
-  text-align: center;
+.instructions {
   position: absolute;
-  top: -4rem;
+  top: -5rem;
+  padding: 0.5rem;
+  background: #fed1d0;
+  border: 0.1rem solid #fc3d39;
+  border-radius: 0.5rem;
   color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.instructions .instructionsText {
+  margin: 0 0 0 0.5rem;
+  font-size: 0.75rem;
 }
 
 .keyboardControls {
   position: absolute;
-  bottom: -11rem;
+  bottom: -11.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -476,14 +494,17 @@ main {
 .key {
   display: block;
   font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-.fa-power-off {
-  margin: 0.15rem 0;
+.pauseButton .key {
+  line-height: 2rem;
 }
 
 .keyDescription {
+  display: block;
   font-size: 0.5rem;
+  margin: 0;
 }
 
 .keyboardButton:hover {
@@ -531,9 +552,9 @@ main {
   }
 }
 
-.tapInAlert {
-  -webkit-animation-name: tapInAlert;
-          animation-name: tapInAlert;
+.warningAlert {
+  -webkit-animation-name: warningAlert;
+          animation-name: warningAlert;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
   -webkit-animation-iteration-count: infinite;
@@ -542,7 +563,7 @@ main {
           animation-direction: alternate;
 }
 
-@-webkit-keyframes tapInAlert {
+@-webkit-keyframes warningAlert {
   from {
     background: black;
   }
@@ -551,7 +572,7 @@ main {
   }
 }
 
-@keyframes tapInAlert {
+@keyframes warningAlert {
   from {
     background: black;
   }

@@ -40,50 +40,57 @@
                     <span class="sr-only">Score</span>
 
                     <p class="currentScore">
-                        <!-- Dynamic score goes here -->
+                        Charge: 
+                        <span class="score"><!-- Dynamic score goes here --></span>
                     </p>
                 </section>
 
                 <section class="timerContainer">
+                    <p class="timerStatus">
+                        <!-- Status of timer goes here -->
+                    </p>
                     <p class="timer1 timer">
                         <!-- Dynamic current timer goes here -->
                     </p>
                     <p class="timer2 timer">
-                        5:00
                         <!-- Dynamic upcoming 2nd timer goes here -->
                     </p>
                     <p class="timer3 timer">
-                        25:00
                         <!-- Dynamic upcoming 3rd timer goes here -->
                     </p>
                     <p class="timer4 timer">
-                        20:00
                         <!-- Dynamic upcoming 4th timer goes here -->
                     </p>
                 </section>
 
-                <section class="gameStatus">
-                    <!-- Status of game goes here -->
+                <section class="instructions visuallyHidden">
+                    <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                    <p class="instructionsText">
+                        <!-- Instructions go here -->
+                    </p>
                 </section>
     
                 <section class="keyboardControls">
-                    <button class="tapInButton keyboardButton">
-                        <span class="key">T</span>
-                        <span class="keyDescription">Tap In</span>
+                    <button class="nextButton keyboardButton">
+                        <i class="fas fa-arrow-right key" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                        <span class="keyDescription">
+                            <!-- Dynamically updating text based on what's next -->
+                        </span>
                     </button>
                     <button class="buyButton keyboardButton">
-                        <span class="key">B</span>
+                        <i class="fas fa-arrow-up key" aria-hidden="true"></i>
+                        <span class="sr-only">Buy Time</span>
                         <span class="keyDescription">Buy Time</span>
-                    </button>
-                    <button class="pauseButton keyboardButton">
-                        <span class="key">P</span>
-                        <span class="keyDescription">Pause</span>
                     </button>
                     <button class="shutdownButton keyboardButton">
                         <i class="fas fa-power-off key" aria-hidden="true"></i>
                         <span class="sr-only">Shut Down</span>
-                        </span>
                         <span class="keyDescription">Shutdown</span>
+                    </button>
+                    <button class="pauseButton keyboardButton">
+                        <span class="key">P</span>
+                        <span class="keyDescription">Pause</span>
                     </button>
                 </section>
             </section>
