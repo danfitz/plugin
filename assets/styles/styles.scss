@@ -14,14 +14,11 @@ html {
     // Sets font size to 20px for most browsers
     font-size: 125%;
     color: black;
-    
-    // Hides overflow of elements stretching beyond screen
-    // overflow-x: hidden;
 }
 
-html, body, main { overflow-x: hidden; }
 
 main {
+    // Prevent overflow of absolute positioned elements beyond viewport
     overflow-x: hidden;
     // Sets up canvas
     position: absolute;

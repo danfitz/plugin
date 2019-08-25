@@ -197,10 +197,10 @@ p, i {
 html {
   font-size: 125%;
   color: black;
-  overflow-x: hidden;
 }
 
 main {
+  overflow-x: hidden;
   position: absolute;
   height: 100%;
   width: 100%;
