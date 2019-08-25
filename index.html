@@ -46,21 +46,28 @@
                 </section>
 
                 <section class="timerContainer">
-                    <p class="timerStatus">
+                    <div class="timerStatus">
                         <!-- Status of timer goes here -->
-                    </p>
-                    <p class="timer1 timer">
+                    </div>
+                    <div class="timer1 timer">
                         <!-- Dynamic current timer goes here -->
-                    </p>
-                    <p class="timer2 timer">
+                        <span class="timerNum"></span>
+                    </div>
+                    <div class="timer2 timer">
                         <!-- Dynamic upcoming 2nd timer goes here -->
-                    </p>
-                    <p class="timer3 timer">
+                        <span class="timerType"></span> 
+                        <span class="timerNum"></span>
+                    </div>
+                    <div class="timer3 timer">
                         <!-- Dynamic upcoming 3rd timer goes here -->
-                    </p>
-                    <p class="timer4 timer">
+                        <span class="timerType"></span> 
+                        <span class="timerNum"></span>
+                    </div>
+                    <div class="timer4 timer">
                         <!-- Dynamic upcoming 4th timer goes here -->
-                    </p>
+                        <span class="timerType"></span> 
+                        <span class="timerNum"></span>
+                    </div>
                 </section>
 
                 <section class="instructions visuallyHidden">
@@ -80,8 +87,8 @@
                     </button>
                     <button class="buyButton keyboardButton">
                         <i class="fas fa-arrow-up key" aria-hidden="true"></i>
-                        <span class="sr-only">Buy Time</span>
-                        <span class="keyDescription">Buy Time</span>
+                        <span class="sr-only">Buy 5 Minutes (60000 Charge)</span>
+                        <span class="keyDescription">Buy 5 Min (60,000)</span>
                     </button>
                     <button class="shutdownButton keyboardButton">
                         <i class="fas fa-power-off key" aria-hidden="true"></i>

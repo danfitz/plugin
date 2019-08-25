@@ -405,7 +405,6 @@ main {
 }
 
 .timerContainer .timerStatus {
-  margin: 0;
   position: relative;
   top: 0.25rem;
   text-transform: uppercase;
@@ -413,7 +412,6 @@ main {
 }
 
 .timerContainer .timer {
-  margin: 0;
   position: relative;
   top: 1rem;
 }
@@ -421,10 +419,11 @@ main {
 .timerContainer .timer1 {
   font-size: 2rem;
   line-height: 2rem;
+  margin-bottom: 0.2rem;
 }
 
 .timerContainer .timer2, .timerContainer .timer3, .timerContainer .timer4 {
-  font-size: 0.5rem;
+  font-size: 0.75rem;
 }
 
 .timerContainer .timer2 {
@@ -432,11 +431,11 @@ main {
 }
 
 .timerContainer .timer3 {
-  opacity: 0.6;
+  opacity: 0.65;
 }
 
 .timerContainer .timer4 {
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .instructions {
@@ -552,9 +551,9 @@ main {
   }
 }
 
-.warningAlert {
-  -webkit-animation-name: warningAlert;
-          animation-name: warningAlert;
+.depletingAlert {
+  -webkit-animation-name: depletingAlert;
+          animation-name: depletingAlert;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
   -webkit-animation-iteration-count: infinite;
@@ -563,26 +562,26 @@ main {
           animation-direction: alternate;
 }
 
-@-webkit-keyframes warningAlert {
+@-webkit-keyframes depletingAlert {
   from {
-    background: black;
+    background: #670402;
   }
   to {
-    background: #FECB0E;
+    background: #fc3d39;
   }
 }
 
-@keyframes warningAlert {
+@keyframes depletingAlert {
   from {
-    background: black;
+    background: #670402;
   }
   to {
-    background: #FECB0E;
+    background: #fc3d39;
   }
 }
 
-.depletingAlert {
-  background: #fc3d39;
+.warningAlert {
+  background: #FECB0E;
 }
 
 .batteryCharging {

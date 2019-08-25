@@ -7,7 +7,7 @@ app.currentTime = null; // current time running
 app.workBlock = { type: "work", time: 0.05  }; // in minutes
 app.shortBreakBlock = { type: "short break", time: 1 }; // in minutes
 app.longBreakBlock = { type: "long break", time: 5 }; // in minutes
-app.paddingTime = 1; // in minutes
+app.paddingTime = 0.05; // in minutes
 app.cycle = [
     app.workBlock,
     app.shortBreakBlock,
@@ -26,11 +26,12 @@ app.batteryIcons = [
     "fa-battery-three-quarters",
     "fa-battery-full"
 ]
+app.buyTimeCost = 100;
 
 // this variable will provide global access to the current setInterval running
 app.intervalId = null;
 
-// Methods for updating battery icon
+// Method for creating battery charging animation
 app.batteryCharging = function () {
     const batteryToEnd = app.batteryIcons.shift();
     app.batteryIcons.push(batteryToEnd);
@@ -38,6 +39,8 @@ app.batteryCharging = function () {
         .removeClass(`${app.batteryIcons[app.batteryIcons.length - 1]} batteryProblem`)
         .addClass(`${app.batteryIcons[0]} batteryCharging`);
 }
+
+// Method for creating battery depleting animation
 app.batteryDepleting = function () {
     const batteryToEnd = app.batteryIcons.pop();
     app.batteryIcons.unshift(batteryToEnd);
@@ -75,13 +78,16 @@ app.startTimer = function() {
     $(".timerStatus").text(targetBlock.type); // Updates timer status
     app.cycle.push(targetBlock); // push target block to end of cycle array
 
-    app.updateTimer(".timer1", app.currentTime); // Update main timer
-    $(".timer2").text(`${app.cycle[0].time}:00`); // Update second timer
-    $(".timer3").text(`${app.cycle[1].time}:00`); // Update third timer
-    $(".timer4").text(`${app.cycle[2].time}:00`); // Update fourth timer
+    app.updateTimer(".timer1 .timerNum", app.currentTime); // Update main timer
+    app.updateTimer(".timer2 .timerNum", app.cycle[0].time * 60000); // Update second timer
+    app.updateTimer(".timer3 .timerNum", app.cycle[1].time * 60000); // Update third timer
+    app.updateTimer(".timer4 .timerNum", app.cycle[2].time * 60000); // Update fourth timer
+
+    $(".timer2 .timerType").text(app.cycle[0].type); // Update second timer
+    $(".timer3 .timerType").text(app.cycle[1].type); // Update third timer
+    $(".timer4 .timerType").text(app.cycle[2].type); // Update fourth timer
     
     $(".instructions").addClass("visuallyHidden"); // hides any instructions
-
     
     // At a rapid interval:
     // UPDATE SCORE
@@ -93,20 +99,18 @@ app.startTimer = function() {
             if (app.currentTime >= 0) {
                 app.score += 1;
                 $(".score").text(app.score);
-            // When timer is negative but within padding time,
+                // When timer is negative but within padding time,
             // update game status to "warning" and display messages on page
-            } else {
+        } else {
                 app.gameStatus = "warning";
                 $(".instructions").removeClass("visuallyHidden");
-                $(".instructionsText").text(`You have ${app.paddingTime} minute before you start losing charge...`);
                 $(".timerStatus").text("Overtime");
             }
             
-        // Otherwise, user has reached "depleting" game status and begins losing score
+            // Otherwise, user has reached "depleting" game status and begins losing score
         } else {
             // Update game status and instructions
             app.gameStatus = "depleting";
-            $(".instructionsText").text("Tap in to stop losing points...");
             // Update score
             app.score -= 1;
             $(".score").text(app.score);
@@ -117,47 +121,85 @@ app.startTimer = function() {
             if (app.gameStatus === "on") {
                 app.batteryCharging();
                 $(".activeGameContainer").removeClass("depletingAlert warningAlert");
-                $(".tapInButton").removeClass("keyboardButtonFlash");
+                $(".nextButton").removeClass("keyboardButtonFlash");
             } else if (app.gameStatus === "warning") {
                 $(".battery")
-                .removeClass("batteryCharging")
-                .addClass("batteryProblem");
+                    .removeClass("batteryCharging")
+                    .addClass("batteryProblem");
+
+                $(".instructionsText").text(`You have ${app.paddingTime} minute before you start losing charge...`);
                 
                 $(".activeGameContainer").addClass("warningAlert");
-                $(".tapInButton").addClass("keyboardButtonFlash");
+                $(".nextButton").addClass("keyboardButtonFlash");
             } else if (app.gameStatus === "depleting") {
                 app.batteryDepleting();
+
+                $(".instructionsText").text("Tap in to stop losing points...");
+
                 $(".activeGameContainer")
-                .removeClass("warningAlert")
-                .addClass("depletingAlert");
+                    .removeClass("warningAlert")
+                    .addClass("depletingAlert");
             }
         }
-
+        
         // Decrease timer
-        app.currentTime -= 20;
+        app.currentTime -= 50;
         
         // Update time on page exactly every 1 second
         if (app.currentTime % 1000 === 0) {
-            app.updateTimer(".timer1", app.currentTime);
+            app.updateTimer(".timer1 .timerNum", app.currentTime);
         }
-    }, 20);
+    }, 50);
 };
 
-// Tap in button
+// Event listener for taking user to next time block
 app.nextPrompt = function() {
-    $(".nextButton").on("click", function(event) {
-        event.preventDefault();
-        
+    // For click event
+    $(".nextButton").on("click", function() {
+        $(".nextButton .keyDescription").text(app.cycle[1].type);
         clearTimeout(app.intervalId);
         app.startTimer();
-        // app.batteryCharging();
+    });
+
+    // For right arrow key event
+    $(document).on("keydown", function(event) {
+        if (event.keyCode === 39) {
+            $(".nextButton .keyDescription").text(app.cycle[1].type);
+            clearTimeout(app.intervalId);
+            app.startTimer();
+        }
     });
 };
+
+// Event listener for buying more time
+app.buyTimePrompt = function() {
+    // For click event
+    $(".buyButton").on("click", function() {
+        if (app.score >= app.buyTimeCost) {
+            app.score -= app.buyTimeCost;
+            app.currentTime += 60000 * 5;
+            app.updateTimer(".timer1 .timerNum", Math.round(app.currentTime) - Math.round(app.currentTime) % 1000);
+        }
+    })
+
+    // For up arrow key event
+    $(document).on("keydown", function(event) {
+        if (event.keyCode === 38) {
+            if (app.score >= app.buyTimeCost) {
+                app.score -= app.buyTimeCost;
+                app.currentTime += 60000 * 5;
+                app.updateTimer(".timer1 .timerNum", Math.round(app.currentTime) - Math.round(app.currentTime) % 1000);
+            }   
+        }
+    })
+}
 
 // Event listener that starts the game
 app.startGame = function() {
     $(".startButton").on("click", function(event) {
         event.preventDefault();
+
+        $(".nextButton .keyDescription").text(app.cycle[1].type);
         
         // Adds class transition animations
         $(".plug").toggleClass("plugRight plugLeft");
@@ -180,11 +222,12 @@ app.startGame = function() {
         
     });
 };
-  
+
 // App init method
 app.init = function() {
     this.startGame();
     this.nextPrompt();
+    this.buyTimePrompt();
 };   
 
 // Start app

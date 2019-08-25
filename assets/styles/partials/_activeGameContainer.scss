@@ -37,7 +37,6 @@
     text-align: center;
 
     .timerStatus {
-        margin: 0;
         position: relative;
         top: 0.25rem;
         text-transform: uppercase;
@@ -45,15 +44,20 @@
     }
 
     .timer {
-        margin: 0;
         position: relative;
         top: 1rem;
     }
-    .timer1 { font-size: 2rem; line-height: 2rem; }
-    .timer2, .timer3, .timer4 { font-size: 0.5rem; }
+
+    .timer1 {
+        font-size: 2rem;
+        line-height: 2rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .timer2, .timer3, .timer4 { font-size: 0.75rem; }
     .timer2 { opacity: 0.8; }
-    .timer3 { opacity: 0.6; }
-    .timer4 { opacity: 0.4; }
+    .timer3 { opacity: 0.65; }
+    .timer4 { opacity: 0.5; }
 }
 
 .instructions {
@@ -63,7 +67,6 @@
     background: adjust-color($depletingColor, $lightness: 30%);
     border: 0.1rem solid $depletingColor;
     border-radius: 0.5rem;
-    // text-align: center;
     color: black;
     display: flex;
     justify-content: space-between;
