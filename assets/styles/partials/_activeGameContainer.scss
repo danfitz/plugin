@@ -23,7 +23,6 @@
     left: 0.3rem;
     display: flex;
     align-items: center;
-    opacity: 0;
 
     .currentScore {
         margin: 0;
@@ -56,8 +55,8 @@
 
     .timer2, .timer3, .timer4 { font-size: 0.75rem; }
     .timer2 { opacity: 0.8; }
-    .timer3 { opacity: 0.65; }
-    .timer4 { opacity: 0.5; }
+    .timer3 { opacity: 0.6; }
+    .timer4 { opacity: 0.4; }
 }
 
 .instructions {

@@ -35,12 +35,12 @@
             <section class="activeGameContainer containerRight">
                 <img class="laptop" src="assets/images/laptop.png" alt="" aria-hidden="true">
 
-                <section class="batteryScoreboard">
+                <section class="batteryScoreboard visuallyHidden">
                     <i class="battery fas fa-battery-empty batteryPaused" aria-hidden="true"></i>
                     <span class="sr-only">Score</span>
 
                     <p class="currentScore">
-                        Charge: 
+                        Score: 
                         <span class="score"><!-- Dynamic score goes here --></span>
                     </p>
                 </section>
@@ -87,17 +87,17 @@
                     </button>
                     <button class="buyButton keyboardButton">
                         <i class="fas fa-arrow-up key" aria-hidden="true"></i>
-                        <span class="sr-only">Buy 5 Minutes (60000 Charge)</span>
+                        <span class="sr-only">Buy 5 Minutes (costs 60,000)</span>
                         <span class="keyDescription">Buy 5 Min (60,000)</span>
-                    </button>
-                    <button class="shutdownButton keyboardButton">
-                        <i class="fas fa-power-off key" aria-hidden="true"></i>
-                        <span class="sr-only">Shut Down</span>
-                        <span class="keyDescription">Shutdown</span>
                     </button>
                     <button class="pauseButton keyboardButton">
                         <span class="key">P</span>
                         <span class="keyDescription">Pause</span>
+                    </button>
+                    <button class="shutdownButton keyboardButton">
+                        <i class="fas fa-power-off key" aria-hidden="true"></i>
+                        <span class="sr-only">Shut Down</span>
+                        <span class="keyDescription">Shut Down</span>
                     </button>
                 </section>
             </section>

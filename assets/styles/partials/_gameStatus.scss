@@ -11,7 +11,7 @@
 }
 
 .warningAlert {
-    background: $warningColor;
+    background: adjust-color($warningColor, $lightness: -10%);
 }
 
 .batteryCharging {

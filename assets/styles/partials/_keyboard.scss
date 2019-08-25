@@ -20,11 +20,15 @@
     padding: 0.1rem;
 }
 
+.restartButton { display: block; margin: 1rem 0 0; }
+
 .key {
     display: block;
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
+
+.buyButton .key { margin-bottom: 0.2rem;}
 
 .pauseButton .key { line-height: 2rem; }
 
