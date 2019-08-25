@@ -16,8 +16,10 @@ html {
     color: black;
     
     // Hides overflow of elements stretching beyond screen
-    overflow-x: hidden;
+    // overflow-x: hidden;
 }
+
+html, body, main { overflow-x: hidden; }
 
 main {
     // Sets up canvas
