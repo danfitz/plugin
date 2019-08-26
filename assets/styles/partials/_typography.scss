@@ -1,11 +1,9 @@
-// Insert typography-related styles here
-
 html {
     // Sets font size to 20px for most browsers
     font-size: 125%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h4 {
     font-family: "Lobster Two", cursive;
 }
 
@@ -13,6 +11,10 @@ h1 {
     margin: 0;
     font-size: 3rem;
     line-height: 3rem;
+}
+
+h2, h3 {
+    font-weight: 400;
 }
 
 p, i {

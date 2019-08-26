@@ -3,11 +3,11 @@ const app = {};
 
 // Initialize starting properties for app
 app.score = 0; // score for game
-app.currentTime = null; // current time running
-app.workBlock = { type: "work", time: 0.05  }; // in minutes
+app.currentTime = null; // current time running (will be in milliseconds)
+app.workBlock = { type: "work", time: 25  }; // in minutes
 app.shortBreakBlock = { type: "short break", time: 5 }; // in minutes
-app.longBreakBlock = { type: "long break", time: 20 }; // in minutes
-app.paddingTime = 0.05; // in minutes
+app.longBreakBlock = { type: "long break", time: 15 }; // in minutes
+app.paddingTime = 1; // in minutes
 app.cycle = [
     app.workBlock,
     app.shortBreakBlock,
@@ -18,42 +18,55 @@ app.cycle = [
     app.workBlock,
     app.longBreakBlock
 ];
+
+// This variable will provide global access to the current setInterval running
+// Useful for stopping a currently-running timer
+app.intervalId = null;
+
+// For tracking state of game
 app.gameStatus = "off"; // possible values: "off", "on", "warning", "depleting", "done"
 app.paused = false;
+
+// Static values for buying time
+app.buyTime = 5; // in minutes
+app.buyTimeCost = 20000;
+
+// Font Awesome icon classes for battery animations
 app.batteryIcons = [
     "fa-battery-empty",
     "fa-battery-quarter",
     "fa-battery-half",
     "fa-battery-three-quarters",
     "fa-battery-full"
-]
-app.buyTimeCost = 100;
+];
 
-// this variable will provide global access to the current setInterval running
-app.intervalId = null;
+// Method for adding commas to large numbers
+app.numbersWithCommas = function(targetNumber) {
+    return targetNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 
 // Method for creating battery charging animation
 app.batteryCharging = function () {
-    const batteryToEnd = app.batteryIcons.shift();
-    app.batteryIcons.push(batteryToEnd);
     $(".battery")
         .removeClass(`${app.batteryIcons[app.batteryIcons.length - 1]} batteryProblem`)
         .addClass(`${app.batteryIcons[0]} batteryCharging`);
-}
+    const batteryToEnd = app.batteryIcons.shift();
+    app.batteryIcons.push(batteryToEnd);
+};
 
 // Method for creating battery depleting animation
 app.batteryDepleting = function () {
-    const batteryToEnd = app.batteryIcons.pop();
-    app.batteryIcons.unshift(batteryToEnd);
     $(".battery")
         .removeClass(`${app.batteryIcons[0]} batteryCharging`)
         .addClass(`${app.batteryIcons[app.batteryIcons.length - 1]} batteryProblem`);
-}
+    const batteryToEnd = app.batteryIcons.pop();
+    app.batteryIcons.unshift(batteryToEnd);
+};
 
 // Method that converts milliseconds to mm:ss and inserts value on page
 app.updateTimer = function(timerSelector, inputMilliseconds) {
     // Convert input time to positive number if negative
-    let milliseconds = inputMilliseconds < 0 ? -inputMilliseconds : inputMilliseconds;
+    const milliseconds = inputMilliseconds < 0 ? -inputMilliseconds : inputMilliseconds;
 
     // Extract seconds
     let seconds = (milliseconds / 1000) % 60;
@@ -65,95 +78,111 @@ app.updateTimer = function(timerSelector, inputMilliseconds) {
     // Concatenate minutes and seconds into mm:ss format
     const formattedTime = minutes + ":" + seconds;
 
-    // Insert/update app.currentTime on page
+    // Insert/update formattedTime on page
     $(timerSelector).text(formattedTime);
 };
 
-// Method that runs through one full unit of time
-app.startTimer = function() {
-    // Update app properties and content on page when new timer starts
+// Method that makes initial required changes when timer starts
+app.setupTimer = function() {
     app.gameStatus = "on"; // Update game status
 
     const targetBlock = app.cycle.shift(); // remove first element from cycle array
     app.currentTime = targetBlock.time * 60000; // converted to milliseconds
-    $(".timerStatus").text(targetBlock.type); // Updates timer status
     app.cycle.push(targetBlock); // push target block to end of cycle array
 
-    app.updateTimer(".timer1 .timerNum", app.currentTime); // Update main timer
-    app.updateTimer(".timer2 .timerNum", app.cycle[0].time * 60000); // Update second timer
-    app.updateTimer(".timer3 .timerNum", app.cycle[1].time * 60000); // Update third timer
-    app.updateTimer(".timer4 .timerNum", app.cycle[2].time * 60000); // Update fourth timer
+    // Updates 4 timers' values and types on page
+    $(".timerStatus").text(targetBlock.type); // 1st
+    app.updateTimer(".timerNum1", app.currentTime); // 1st
+    app.updateTimer(".timerNum2", app.cycle[0].time * 60000); // 2nd
+    $(".timerType2").text(app.cycle[0].type); // 2nd
+    app.updateTimer(".timerNum3", app.cycle[1].time * 60000); // 3rd
+    $(".timerType3").text(app.cycle[1].type); // 3rd
+    app.updateTimer(".timerNum4", app.cycle[2].time * 60000); // 4th
+    $(".timerType4").text(app.cycle[2].type); // 4th
 
-    $(".timer2 .timerType").text(app.cycle[0].type); // Update second timer
-    $(".timer3 .timerType").text(app.cycle[1].type); // Update third timer
-    $(".timer4 .timerType").text(app.cycle[2].type); // Update fourth timer
-    
-    $(".instructions").addClass("visuallyHidden"); // hides any instructions
-    
-    // At a rapid interval:
-    // UPDATE SCORE
-    // UPDATE CURRENT TIME
+    $(".instructions").css("display", "none"); // hides any instructions
+};
+
+// Method that runs through one full unit of time
+app.startTimer = function() {
+    app.setupTimer();
+
     app.intervalId = setInterval(function() {
-        // Only execute if game isn't paused...
+        
+        // If game isn't paused...
         if (!app.paused) {
+            
+            // Decrease timer
+            app.currentTime -= 50;
+
+            // Update current timer on page exactly every 1 second
+            if (app.currentTime % 1000 === 0) {
+                app.updateTimer(".timerNum1", app.currentTime);
+            }
+
             // As long as timer is greater or equal to the negative value of padding time...
             if (app.currentTime >= app.paddingTime * -60000) {
+                
                 // Increase score and update value on page while score is positive
                 if (app.currentTime >= 0) {
                     app.score += 1;
-                    $(".score").text(app.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    // When timer is negative but within padding time,
+                    $(".score").text(app.numbersWithCommas(app.score));
+
+                // When timer is negative but within padding time,
                 // update game status to "warning" and display messages on page
-            } else {
-                if (app.gameStatus !== "warning") {
-                    app.gameStatus = "warning";
-                    $(".instructions").removeClass("visuallyHidden");
-                    $(".instructionsText").text(`${app.paddingTime} minute(s) until score drops...`);
-                    $(".timerStatus").text("Overtime");
+                } else {
+                    if (app.gameStatus !== "warning") {
+                        app.gameStatus = "warning";
+                        $(".instructions").css("display", "flex");
+                        $(".instructionsText").text(`${app.paddingTime} minute(s) until score drops...`);
+                        $(".timerStatus").text("Overtime");
+                    }
                 }
-            }
             
-            // Otherwise, user has reached "depleting" game status and begins losing score
+            // Otherwise, user has reached "depleting" game status and begins losing points
             } else {
                 // Update game status and instructions
                 if (app.gameStatus !== "depleting") {
                     app.gameStatus = "depleting";
                     $(".instructionsText").text("Start next timer to stop losing points...");
                 }
-                // Update score
+                // Update score value and display on page
                 app.score -= 1;
-                $(".score").text(app.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                $(".score").text(app.numbersWithCommas(app.score));
             };
             
             // Visual signals for game: battery icon, screen colours, etc.
             if (app.currentTime % 500 === 0) {
+
+                // Signals for "on" status
                 if (app.gameStatus === "on") {
+                    // Battery charging animation
                     app.batteryCharging();
-    
+                    // Remove screen colours
                     $(".activeGameContainer").removeClass("depletingAlert warningAlert");
+                    // Remove next button flash
                     $(".nextButton").removeClass("keyboardButtonFlash");
+
+                // Signals for "warning" status
                 } else if (app.gameStatus === "warning") {
+                    // Remove battery charging animation and change colour
                     $(".battery")
                         .removeClass("batteryCharging")
                         .addClass("batteryProblem");
-    
+                    // Add yellow warning colour on screen 
                     $(".activeGameContainer").addClass("warningAlert");
+                    // Add next button flash
                     $(".nextButton").addClass("keyboardButtonFlash");
+
+                // Signals for "depleting" status
                 } else if (app.gameStatus === "depleting") {
+                    // Battery depleting animation
                     app.batteryDepleting();
-    
+                    // Add red flashing colour on screen
                     $(".activeGameContainer")
                         .removeClass("warningAlert")
                         .addClass("depletingAlert");
                 }
-            }
-            
-            // Decrease timer
-            app.currentTime -= 50;
-            
-            // Update time on page exactly every 1 second
-            if (app.currentTime % 1000 === 0) {
-                app.updateTimer(".timer1 .timerNum", app.currentTime);
             }
         }
     }, 50);
@@ -163,18 +192,24 @@ app.startTimer = function() {
 app.nextPrompt = function() {
     // For click event
     $(".nextButton").on("click", function() {
+        // Remove flashing next button
+        $(".nextButton").removeClass("keyboardButtonFlash");
+        // Display upcoming timer type in next button
         $(".nextButton .keyDescription").text(app.cycle[1].type);
+        // End old timer and start new one
         clearTimeout(app.intervalId);
         app.startTimer();
     });
-
+    
     // For right arrow key event
     $(document).on("keydown", function(event) {
         if (event.keyCode === 39) {
+            // Display upcoming timer type in next button
             $(".nextButton .keyDescription").text(app.cycle[1].type);
+            // End old timer and start new one
             clearTimeout(app.intervalId);
             app.startTimer();
-        }
+        };
     });
 };
 
@@ -182,40 +217,56 @@ app.nextPrompt = function() {
 app.buyTimePrompt = function() {
     // For click event
     $(".buyButton").on("click", function() {
+        // Increase timer if user has enough points to buy more time
         if (app.score >= app.buyTimeCost) {
             app.score -= app.buyTimeCost;
-            app.currentTime += 60000 * 5;
-            app.updateTimer(".timer1 .timerNum", Math.round(app.currentTime) - Math.round(app.currentTime) % 1000);
-
+            app.currentTime += app.buyTime * 60000; // in milliseconds
+            app.updateTimer(".timerNum1", Math.round(app.currentTime) - Math.round(app.currentTime) % 1000);
+            
+            // If buying time takes time into a positive value, update status of game to "on" and remove any warning signals 
             if (app.currentTime >= 0) {
-                $(".instructions").addClass("visuallyHidden");
+                app.gameStatus = "on";
+                $(".instructions").css("display", "none");
+                $(".timerStatus").text(app.cycle[app.cycle.length - 1].type);
             }
+        
+        // Display error message if user doesn't have enough points to buy more time
         } else {
-            $(".instructions").removeClass("visuallyHidden");
-            $(".instructionsText").text("Not enough points to buy time");
+            $(".instructions").css("display", "flex");
+            const amountToBuy = app.numbersWithCommas(app.buyTimeCost-app.score);
+            $(".instructionsText").text(`You need ${amountToBuy} more points to buy time`);
         };
     });
 
     // For up arrow key event
     $(document).on("keydown", function(event) {
         if (event.keyCode === 38) {
+            // Increase timer if user has enough points to buy more time
             if (app.score >= app.buyTimeCost) {
                 app.score -= app.buyTimeCost;
-                app.currentTime += 60000 * 5;
-                app.updateTimer(".timer1 .timerNum", Math.round(app.currentTime) - Math.round(app.currentTime) % 1000);
+                app.currentTime += app.buyTime * 60000; // in milliseconds
+                app.updateTimer(".timerNum1", Math.round(app.currentTime) - Math.round(app.currentTime) % 1000);
 
+                // If buying time takes time into a positive value, update status of game to "on" and remove any warning signals 
                 if (app.currentTime >= 0) {
-                    $(".instructions").addClass("visuallyHidden");
+                    app.gameStatus = "on";
+                    $(".instructions").css("display", "none");
+                    $(".timerStatus").text(app.cycle[app.cycle.length - 1].type);
                 }
+
+            // Display error message if user doesn't have enough points to buy more time
             } else {
-                $(".instructions").removeClass("visuallyHidden");
-                $(".instructionsText").text("Not enough points to buy time");
+                $(".instructions").css("display", "flex");
+                const amountToBuy = app.numbersWithCommas(app.buyTimeCost - app.score);
+                $(".instructionsText").text(`You need ${amountToBuy} more points to buy time`);
             };
         };
     });
 };
 
+// Event listener for pausing and unpausing game
 app.pausePrompt = function() {
+    // For click events
     $(".pauseButton").on("click", function() {
         if (!app.paused) {
             app.paused = true;
@@ -228,6 +279,7 @@ app.pausePrompt = function() {
         };
     });
 
+    // For when user clicks the letter "p" on keyboard
     $(document).on("keydown", function(event) {
         if (event.keyCode === 80) {
             if (!app.paused) {
@@ -243,17 +295,25 @@ app.pausePrompt = function() {
     });
 };
 
+// Event listener for ending game
 app.shutdownPrompt = function() {
     $(".shutdownButton").on("click", function() {
+
+        // Confirm if user wants to end game first
         if (confirm("Are you sure you want to shut down?")) {
             app.gameStatus = "done";
             clearInterval(app.intervalId);
     
+            // Display CTA at the end of game:
+            // 1. Final score
+            // 2. Tweet button
+            // 3. Restart button
             const shutdownHtml = `
                 <div.shutdownCTA>
                     <h1 class="appTitle">Plugin</h1>
                     <p>Your final score: ${app.score}</p>
-                    <a href="https://twitter.com/intent/tweet?text=I%20just%20got%20a%20score%20of%20${app.score}%20using%20the%20Plugin%20app%20to%20help%20me%20stay%20productive!&via=_danielfitz&url=https://plugin.danielfitz.com" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <a href="https://twitter.com/intent/tweet?text=I%20just%20got%20a%20score%20of%20${app.score}%20using%20the%20Plugin%20app%20to%20help%20me%20stay%20productive!&via=_danielfitz&url=https://plugin.danielfitz.com" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     <button class="restartButton keyboardButton">
                         <i class="fas fa-redo key" aria-hidden="true"></i>
                         <span class="sr-only">Restart</span>
@@ -267,9 +327,9 @@ app.shutdownPrompt = function() {
     });
 }
 
+// Event listener for restart button
 app.restartPrompt = function() {
     $("main").on("click", ".restartButton", function() {
-        console.log("restart");
         location.reload();
     });
 };
@@ -279,6 +339,7 @@ app.startGame = function() {
     $(".startButton").on("click", function(event) {
         event.preventDefault();
 
+        // Updates next button text to upcoming timer
         $(".nextButton .keyDescription").text(app.cycle[1].type);
         
         // Adds class transition animations

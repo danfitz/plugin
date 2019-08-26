@@ -183,7 +183,7 @@ html {
   font-size: 125%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h4 {
   font-family: "Lobster Two", cursive;
 }
 
@@ -191,6 +191,10 @@ h1 {
   margin: 0;
   font-size: 3rem;
   line-height: 3rem;
+}
+
+h2, h3 {
+  font-weight: 400;
 }
 
 p, i {
@@ -396,6 +400,12 @@ main {
   width: 153%;
 }
 
+.appScreenTitle {
+  position: absolute;
+  bottom: -1rem;
+  right: 0.3rem;
+}
+
 .batteryScoreboard {
   position: absolute;
   top: 0;
@@ -409,7 +419,7 @@ main {
 }
 
 .batteryScoreboard .battery {
-  margin-top: 0.15rem;
+  margin-top: 0.07rem;
 }
 
 .batteryScoreboard .currentScore {
@@ -426,6 +436,7 @@ main {
 }
 
 .timerContainer {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -438,9 +449,11 @@ main {
 
 .timerContainer .timerStatus {
   position: relative;
-  top: 0.25rem;
+  top: 0.5rem;
   text-transform: uppercase;
   line-height: 0;
+  font-size: 1rem;
+  margin: 0;
 }
 
 .timerContainer .timer {
@@ -451,7 +464,7 @@ main {
 .timerContainer .timer1 {
   font-size: 2rem;
   line-height: 2rem;
-  margin-bottom: 0.2rem;
+  margin: 0 0 0.2rem;
 }
 
 .timerContainer .timer2, .timerContainer .timer3, .timerContainer .timer4 {
@@ -478,9 +491,7 @@ main {
   border: 0.1rem solid #fc3d39;
   border-radius: 0.5rem;
   color: black;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;

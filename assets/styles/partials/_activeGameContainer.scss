@@ -17,6 +17,12 @@
     width: 153%;
 }
 
+.appScreenTitle {
+    position: absolute;
+    bottom: -1rem;
+    right: 0.3rem;
+}
+
 .batteryScoreboard {
     position: absolute;
     top: 0;
@@ -24,7 +30,7 @@
     display: flex;
     align-items: center;
 
-    .battery { margin-top: 0.15rem; }
+    .battery { margin-top: 0.07rem; }
     
     .currentScore {
         margin: 0;
@@ -36,15 +42,18 @@
 }
    
 .timerContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
     text-align: center;
 
     .timerStatus {
         position: relative;
-        top: 0.25rem;
+        top: 0.5rem;
         text-transform: uppercase;
         line-height: 0;
+        font-size: 1rem;
+        margin: 0;
     }
 
     .timer {
@@ -55,7 +64,7 @@
     .timer1 {
         font-size: 2rem;
         line-height: 2rem;
-        margin-bottom: 0.2rem;
+        margin: 0 0 0.2rem;
     }
 
     .timer2, .timer3, .timer4 { font-size: 0.75rem; }
@@ -72,7 +81,7 @@
     border: 0.1rem solid $depletingColor;
     border-radius: 0.5rem;
     color: black;
-    display: flex;
+    display: none; // changes to flex when timer starts
     justify-content: space-between;
     align-items: center;
 
@@ -85,6 +94,7 @@
 // Media queries
 @media (min-width: 400px) {
     .activeGameContainer { top: 1.5rem; }
+
     .instructions { top: -4rem; }
 }
 
