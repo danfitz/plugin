@@ -358,6 +358,7 @@ app.startGame = function() {
         // Starts game when plug has been plugged in
         setTimeout(function() {
             $(".batteryScoreboard").removeClass("visuallyHidden"); // unhides scoreboard
+            $(".appScreenTitle").removeClass("visuallyHidden"); // unhides screen logo
             app.startTimer();
         }, 2000);     
     });
